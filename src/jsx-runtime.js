@@ -37,7 +37,9 @@ const appendChild = (parent, child) => {
 }
 
 const createFragment = (props, ...children) => {
-	return children
+	return [children]
+		.flat()
+		.map(child => child.nodeType ? child : document.createTextNode(child))
 }
 
 const Head = (props, ...children) => {
