@@ -27,9 +27,9 @@ npm init -y
 
 Now we're gonna install some packages that are gonna make our life a hell of a lot easier while dealing with the data. The packages are:
 
--   **front-matter** for extracting the yaml front matter from our posts
--   **marked** for converting markdown to html
--   **highlight.js** for syntax highlighting in code. We can install all of these using the following command:
+- **front-matter** for extracting the yaml front matter from our posts
+- **marked** for converting markdown to html
+- **highlight.js** for syntax highlighting in code. We can install all of these using the following command:
 
 ```bash
 npm i front-matter marked highlight.js
@@ -140,10 +140,7 @@ const config = require('./config')
 const fm = require('front-matter')
 const marked = require('marked')
 const createPost = (postPath) => {
-	const data = fs.readFileSync(
-		`${config.dev.postsdir}/${postPath}.md`,
-		'utf8'
-	)
+	const data = fs.readFileSync(`${config.dev.postsdir}/${postPath}.md`, 'utf8')
 	const content = fm(data)
 	content.body = marked(content.body)
 	content.path = postPath
@@ -176,9 +173,7 @@ marked.setOptions({
 	renderer: new marked.Renderer(),
 	highlight: function (code, language) {
 		const hljs = require('highlight.js')
-		const validLanguage = hljs.getLanguage(language)
-			? language
-			: 'plaintext'
+		const validLanguage = hljs.getLanguage(language) ? language : 'plaintext'
 		return hljs.highlight(validLanguage, code).value
 	},
 	pedantic: false,
@@ -320,23 +315,23 @@ const homepage = (posts) => `
             </header>
             <div class="posts">
                 ${posts
-					.map(
-						(post) => `<div class="post">
+									.map(
+										(post) => `<div class="post">
                     <h3><a href="./${post.path}">${
-							post.attributes.title
-						}</a></h3>
+											post.attributes.title
+										}</a></h3>
                         <small>${new Date(
-							parseInt(post.attributes.date)
-						).toDateString()}</small>
+													parseInt(post.attributes.date)
+												).toDateString()}</small>
                         <p>${post.attributes.description}</p>
                     </div>`
-					)
-					.join('')}
+									)
+									.join('')}
             </div>
             <footer>
                 ${`<p>© ${new Date().getFullYear()} ${
-					config.authorName
-				}, Find the code on <a href="github.com/kartiknair/blog">GitHub</a></p>`}
+									config.authorName
+								}, Find the code on <a href="github.com/kartiknair/blog">GitHub</a></p>`}
             </footer>
         </div>
     </body>

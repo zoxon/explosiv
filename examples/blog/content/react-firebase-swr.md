@@ -220,20 +220,15 @@ const SignIn = ({ user, signIns: { signInWithGoogle, signInWithGithub } }) => {
 		return (
 			<div className="sign-in-page">
 				<h3>
-					Welcome to TypeMD a simple &amp; beautiful online markdown
-					editor
+					Welcome to TypeMD a simple &amp; beautiful online markdown editor
 				</h3>
 				<p>
-					Sign in with your social accounts to have files that are
-					synced accross devices
+					Sign in with your social accounts to have files that are synced
+					accross devices
 				</p>
 				<div className="sign-in-buttons">
-					<button onClick={signInWithGoogle}>
-						Sign in with Google
-					</button>
-					<button onClick={signInWithGithub}>
-						Sign in with GitHub
-					</button>
+					<button onClick={signInWithGoogle}>Sign in with Google</button>
+					<button onClick={signInWithGithub}>Sign in with GitHub</button>
 				</div>
 			</div>
 		)
@@ -375,10 +370,7 @@ const Dashboard = ({ userId }) => {
 					{data.map((file) => {
 						return (
 							<li key={file.id} className="file">
-								<Link
-									to={`/user/${userId}/editor/${file.id}`}
-									className="link"
-								>
+								<Link to={`/user/${userId}/editor/${file.id}`} className="link">
 									{file.name}
 								</Link>
 							</li>
@@ -431,13 +423,9 @@ const Editor = ({ userId, fileId }) => {
 	}, [file, value])
 
 	const saveChanges = () => {
-		db.collection('users')
-			.doc(userId)
-			.collection('files')
-			.doc(fileId)
-			.update({
-				content: value,
-			})
+		db.collection('users').doc(userId).collection('files').doc(fileId).update({
+			content: value,
+		})
 		mutate([userId, fileId])
 	}
 

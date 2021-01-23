@@ -1,7 +1,7 @@
 {
-    // This file only exists for esbuild-register
-    "compilerOptions": {
-        "jsxFactory": "Dhow.el",
-        "jsxFragmentFactory": "Dhow.fragment"
-    }
+	// This file only exists for esbuild-register
+	"compilerOptions": {
+		"jsxFactory": "Explosiv.el",
+		"jsxFragmentFactory": "Explosiv.fragment"
+	}
 }

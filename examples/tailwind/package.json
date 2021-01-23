@@ -1,17 +1,17 @@
 {
-    "name": "tailwind",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "dev": "dhow dev",
-        "build": "dhow build"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "MIT",
-    "dependencies": {
-        "dhow": "^3.0.0",
-        "tailwindcss": "^1.6.2"
-    }
+	"name": "tailwind-explosiv-demoS",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"dev": "explosiv dev",
+		"build": "explosiv build"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "MIT",
+	"dependencies": {
+		"explosiv": "^1.0.0",
+		"tailwindcss": "^1.6.2"
+	}
 }

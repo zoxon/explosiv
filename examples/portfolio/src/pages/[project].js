@@ -1,13 +1,13 @@
-import Dhow from 'dhow'
+import Explosiv from 'explosiv'
 
 export default () => (
-    <div>
-        <p>Hello</p>
-    </div>
+	<div>
+		<p>Hello</p>
+	</div>
 )
 
 export const Head = () => (
-    <>
-        <title>Kartik Nair</title>
-    </>
+	<>
+		<title>Kartik Nair</title>
+	</>
 )

@@ -1,19 +1,19 @@
 {
-    "name": "dhow-blog",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "dev": "dhow dev",
-        "build": "dhow build"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "MIT",
-    "dependencies": {
-        "dhow": "^3.0.0",
-        "gray-matter": "^4.0.2",
-        "marked": "^1.1.1",
-        "prismjs": "^1.21.0"
-    }
+	"name": "explosiv-blog",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"dev": "explosiv dev",
+		"build": "explosiv build"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "MIT",
+	"dependencies": {
+		"explosiv": "^1.0.0",
+		"gray-matter": "^4.0.2",
+		"marked": "^1.1.1",
+		"prismjs": "^1.21.0"
+	}
 }

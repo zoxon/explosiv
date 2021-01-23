@@ -1,17 +1,17 @@
 {
-    "name": "dhow-portfolio",
-    "version": "1.0.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
-        "dev": "dhow dev -i src/pages",
-        "build": "dhow build -i src/pages"
-    },
-    "keywords": [],
-    "author": "",
-    "license": "MIT",
-    "dependencies": {
-        "dhow": "^3.0.0",
-        "gray-matter": "^4.0.2"
-    }
+	"name": "explosiv-portfolio",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"dev": "explosiv dev -i src/pages",
+		"build": "explosiv build -i src/pages"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "MIT",
+	"dependencies": {
+		"explosiv": "^1.0.0",
+		"gray-matter": "^4.0.2"
+	}
 }

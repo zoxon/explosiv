@@ -53,11 +53,7 @@ window.onload = function () {
 			link.addEventListener('click', (e) => {
 				e.preventDefault()
 				const destination = link.getAttribute('href')
-				history.pushState(
-					{ route: destination },
-					destination,
-					destination
-				)
+				history.pushState({ route: destination }, destination, destination)
 			})
 		} else {
 			link.setAttribute('data-external', true)

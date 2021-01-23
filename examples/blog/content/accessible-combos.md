@@ -39,10 +39,10 @@ Let's create a `src` directory and add our HTML & JavaScript file. I'm using jus
 		<main>
 			<h1>Hello accessible combos</h1>
 			<p>
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis
-				minus sequi nesciunt, sapiente dignissimos ut, est magni,
-				facilis repellat corrupti adipisci dicta ullam. Corrupti
-				voluptates assumenda reiciendis quod placeat maxime.
+				Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis minus
+				sequi nesciunt, sapiente dignissimos ut, est magni, facilis repellat
+				corrupti adipisci dicta ullam. Corrupti voluptates assumenda reiciendis
+				quod placeat maxime.
 			</p>
 		</main>
 		<script src="./index.js"></script>
@@ -85,10 +85,8 @@ let accessibleCombo = null
 
 while (!accessibleCombo) {
 	let randomPair = [
-		cloudflareColors[Math.floor(Math.random() * cloudflareColors.length)]
-			.hex,
-		cloudflareColors[Math.floor(Math.random() * cloudflareColors.length)]
-			.hex,
+		cloudflareColors[Math.floor(Math.random() * cloudflareColors.length)].hex,
+		cloudflareColors[Math.floor(Math.random() * cloudflareColors.length)].hex,
 	]
 
 	if (getContrast(randomPair[0], randomPair[1]) > 7.1)
@@ -197,10 +195,8 @@ let accessibleCombo = null
 
 while (!accessibleCombo) {
 	let randomPair = [
-		cloudflareColors[Math.floor(Math.random() * cloudflareColors.length)]
-			.hex,
-		cloudflareColors[Math.floor(Math.random() * cloudflareColors.length)]
-			.hex,
+		cloudflareColors[Math.floor(Math.random() * cloudflareColors.length)].hex,
+		cloudflareColors[Math.floor(Math.random() * cloudflareColors.length)].hex,
 	]
 
 	if (getContrast(randomPair[0], randomPair[1]) > 7.1)

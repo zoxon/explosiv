@@ -1,19 +1,16 @@
-import Dhow from 'dhow'
+import Explosiv from 'explosiv'
 
 const Document = () => (
-    <html lang="en">
-        <head>
-            <meta charset="UTF-8" />
-            <meta
-                name="viewport"
-                content="width=device-width, initial-scale=1.0"
-            />
-            <link rel="stylesheet" href="/styles/main.css" />
-        </head>
-        <body>
-            <div class="dhow"></div>
-            <script
-                html={`
+	<html lang="en">
+		<head>
+			<meta charset="UTF-8" />
+			<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+			<link rel="stylesheet" href="/styles/main.css" />
+		</head>
+		<body>
+			<div class="root"></div>
+			<script
+				html={`
                 window.onload = function () {
                     document.querySelectorAll('a').forEach((link) => {
                         if (link.host === window.location.host)
@@ -22,9 +19,9 @@ const Document = () => (
                     })
                 }
             `}
-            ></script>
-        </body>
-    </html>
+			></script>
+		</body>
+	</html>
 )
 
 export default Document

@@ -1,15 +1,15 @@
 {
-    "name": "dhow-basic-example",
-    "version": "1.0.0",
-    "description": "Basic example using Dhow as a Static Site Generator",
-    "main": "index.js",
-    "scripts": {
-        "dev": "dhow dev",
-        "build": "dhow build"
-    },
-    "author": "",
-    "license": "MIT",
-    "dependencies": {
-        "dhow": "^3.0.0"
-    }
+	"name": "explosiv-basic-example",
+	"version": "1.0.0",
+	"description": "Basic example using Explosiv as a Static Site Generator",
+	"main": "index.js",
+	"scripts": {
+		"dev": "explosiv dev",
+		"build": "explosiv build"
+	},
+	"author": "",
+	"license": "MIT",
+	"dependencies": {
+		"explosiv": "^1.0.0"
+	}
 }
