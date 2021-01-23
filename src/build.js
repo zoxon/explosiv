@@ -114,7 +114,7 @@ async function build(indir, outdir) {
 			)
 		} else {
 			const containerDiv = document.createElement('div')
-			containerDiv.className += 'explosiv'
+			containerDiv.className += 'root'
 			document.body.appendChild(containerDiv)
 		}
 
@@ -164,7 +164,7 @@ async function build(indir, outdir) {
 }
 
 async function writePageDOM(pageDOM, path) {
-	const rootEl = document.getElementsByClassName('explosiv')[0]
+	const rootEl = document.getElementsByClassName('root')[0]
 
 	rootEl.appendChild(pageDOM)
 
