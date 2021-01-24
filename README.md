@@ -63,20 +63,6 @@ It convert it into a static HTML file like this:
 
 > Tip: You can omit the `import Explosiv from 'explosiv'`, unless you want to use `Head`.
 
-### Benefits of using Explosiv over something like React
-
-- Very easy to learn
-- Super duper fast (mainly because of using ESBuild)
-- No need to `render` or `hydrate` on the client-side
-- No need to server large Javascript bundles on the client-side (React, React-DOM, webpack, unecessary polyfills)
-- Pages load fast and run very smoothly, aiming always for 100% Lighthouse scores
-
-### Improvements over Dhow
-
-- Use Explosiv without importing it everywhere, just write your code!
-- Allows use of `<>` (aka Fragment tags) everywhere
-- A more reactive API e.g: `({ children, ...props })` instead of `(props, ...children)`.
-
 ## Advanced usage
 
 ### getProps
@@ -250,3 +236,18 @@ If you export a `getProps` function then the results of that function are passed
 ## Contributing
 
 Feel free to add any features you might find useful. Just open an issue and we can go there. If you find a bug you can also open an issue but please make sure to include details like your system, node version, etc.
+
+### Benefits of using Explosiv over something like React
+
+- Very easy to learn
+- Super duper fast (mainly because of using ESBuild)
+- No need to `render` or `hydrate` on the client-side
+- No need to server large Javascript bundles on the client-side (React, React-DOM, webpack, unecessary polyfills)
+- Pages load fast and run very smoothly, aiming always for 100% Lighthouse scores
+
+### Improvements over Dhow
+
+- Use Explosiv without importing it everywhere, just write your code!
+- Allows use of `<>` (aka Fragment tags) everywhere
+- A more reactive API e.g: `({ children, ...props })` instead of `(props, ...children)`.
+- Allows using `className` instead of `class`

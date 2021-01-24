@@ -1,12 +1,13 @@
 const document = require('min-document')
 
-const createElement = (tag, props, children = []) => {
+const createElement = (tag, props, ...children) => {
 	if (typeof tag === 'function') return tag({ children, ...props })
 	const element = document.createElement(tag)
 
 	Object.entries(props || {}).forEach(([name, value]) => {
 		if (name === 'html') element.innerHTML = value
 		else if (name === 'class') element.className += value.toString()
+		else if (name === 'className') element.className += value.toString()
 		else if (name === 'style' && typeof value === 'object') {
 			const styleString = Object.entries(value)
 				.map(
