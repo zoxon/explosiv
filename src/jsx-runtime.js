@@ -1,7 +1,7 @@
 const document = require('min-document')
 
-const createElement = (tag, props, ...children) => {
-	if (typeof tag === 'function') return tag(props, ...children)
+const createElement = (tag, props, children) => {
+	if (typeof tag === 'function') return tag({ children, ...props })
 	const element = document.createElement(tag)
 
 	Object.entries(props || {}).forEach(([name, value]) => {
@@ -22,6 +22,8 @@ const createElement = (tag, props, ...children) => {
 		} else element.setAttribute(name, value.toString())
 	})
 
+	children = [children].flat();
+
 	children.forEach((child) => {
 		appendChild(element, child)
 	})
@@ -36,7 +38,7 @@ const appendChild = (parent, child) => {
 		parent.appendChild(child.nodeType ? child : document.createTextNode(child))
 }
 
-const createFragment = (props, ...children) => {
+const createFragment = ({ children, ...props }) => {
 	return [children]
 		.flat()
 		.map(child => child.nodeType ? child : document.createTextNode(child))

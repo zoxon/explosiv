@@ -75,6 +75,7 @@ It convert it into a static HTML file like this:
 
 - Use Explosiv without importing it everywhere, just write your code!
 - Allows use of `<>` (aka Fragment tags) everywhere
+- A more reactive API e.g: `({ children, ...props })` instead of `(props, ...children)`.
 
 ## Advanced usage
 
