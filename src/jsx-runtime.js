@@ -1,6 +1,6 @@
 const document = require('min-document')
 
-const createElement = (tag, props, children) => {
+const createElement = (tag, props, children = []) => {
 	if (typeof tag === 'function') return tag({ children, ...props })
 	const element = document.createElement(tag)
 
