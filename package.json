@@ -1,6 +1,6 @@
 {
 	"name": "explosiv",
-	"version": "1.0.7",
+	"version": "1.0.8",
 	"description": "JSX-powered SSG for Node.js",
 	"main": "./src/jsx-runtime.js",
 	"bin": {
@@ -14,13 +14,15 @@
 	"license": "MIT",
 	"dependencies": {
 		"chokidar": "^3.4.2",
+		"compression": "^1.7.4",
+		"connect": "^3.7.0",
 		"dotenv": "^8.2.0",
 		"esbuild": "^0.6.17",
 		"fast-glob": "^3.2.4",
 		"fs-extra": "^9.0.1",
 		"min-document": "^2.19.0",
+		"morgan": "^1.10.0",
 		"ora": "^4.1.1",
-		"polka": "^0.5.2",
 		"postcss": "^7.0.32",
 		"sade": "^1.7.3",
 		"sirv": "^1.0.5"

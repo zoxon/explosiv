@@ -4,7 +4,10 @@ const { resolve } = require('path')
 const chokidar = require('chokidar')
 const ora = require('ora')
 const sirv = require('sirv')
-const polka = require('polka')
+const compression = require('compression')
+const connect = require('connect')
+const morgan = require('morgan')
+const http = require('http')
 const chalk = require('chalk')
 const sade = require('sade')
 const build = require('./build')
@@ -78,8 +81,12 @@ function explosivDev({
 			dev: true,
 		})
 
-		polka()
+		let server = connect()
+			.use(compression())
+			.use(morgan('dev'))
 			.use(assets)
+
+		http.createServer(server)
 			.listen(process.env.PORT || port, (err) => {
 				if (err) throw err
 				console.log(
