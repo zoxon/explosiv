@@ -1,6 +1,6 @@
 # Explosiv
 
-![npm version](https://img.shields.io/npm/v/explosiv) ![License](https://img.shields.io/npm/l/explosiv)
+![npm version](https://img.shields.io/npm/v/explosiv) ![License](https://img.shields.io/npm/l/explosiv) ![Size](https://img.shields.io/bundlephobia/minzip/explosiv)
 
 JSX Static Site Generator for Ambitious projects. Simple, powerful and performant.
 
