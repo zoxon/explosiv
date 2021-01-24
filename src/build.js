@@ -166,7 +166,11 @@ async function build(indir, outdir) {
 async function writePageDOM(pageDOM, path) {
 	const rootEl = document.getElementsByClassName('root')[0]
 
-	rootEl.appendChild(pageDOM)
+	if(Array.isArray(pageDOM)) {
+		pageDOM.forEach(singleEl => rootEl.appendChild(singleEl))
+	} else {
+		rootEl.appendChild(pageDOM)
+	}
 
 	for (let node of global.headContents) {
 		document.head.appendChild(node)
