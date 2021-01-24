@@ -35,10 +35,10 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/vixalien/explosivS.git"
+		"url": "git+https://github.com/vixalien/explosiv.git"
 	},
 	"bugs": {
-		"url": "https://github.com/vixalien/explosivS/issues"
+		"url": "https://github.com/vixalien/explosiv/issues"
 	},
-	"homepage": "https://github.com/vixalien/explosivS#readme"
+	"homepage": "https://github.com/vixalien/explosiv#readme"
 }

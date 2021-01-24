@@ -4,8 +4,6 @@
 
 JSX Static Site Generator for Ambitious projects. Simple, powerful and performant.
 
-> A clone of the already beautiful [Dhow](https://www.github.com/kartiknair/dhow)
-
 ## Getting started
 
 Install it as a development dependency.
@@ -22,18 +20,7 @@ Or just install it globally
 npm i explosiv -g
 ```
 
-### Benefits of using Explosiv over something like React
-
-- Very easy to learn
-- Super duper fast (mainly because of using ESBuild)
-- No need to `render` or `hydrate` on the client-side
-- No need to server large Javascript bundles on the client-side (React, React-DOM, webpack, unecessary polyfills)
-- Pages load fast and run very smoothly, aiming always for 100% Lighthouse scores
-
-### Improvements over Dhow
-
-- Use Explosiv without importing it everywhere, just write your code!
-- Allows use of `<>` (aka Fragment tags) everywhere
+> A clone of the already beautiful [Dhow](https://www.github.com/kartiknair/dhow)
 
 ## Simple example
 
@@ -75,6 +62,19 @@ It convert it into a static HTML file like this:
 ```
 
 > Tip: You can omit the `import Explosiv from 'explosiv'`, unless you want to use `Head`.
+
+### Benefits of using Explosiv over something like React
+
+- Very easy to learn
+- Super duper fast (mainly because of using ESBuild)
+- No need to `render` or `hydrate` on the client-side
+- No need to server large Javascript bundles on the client-side (React, React-DOM, webpack, unecessary polyfills)
+- Pages load fast and run very smoothly, aiming always for 100% Lighthouse scores
+
+### Improvements over Dhow
+
+- Use Explosiv without importing it everywhere, just write your code!
+- Allows use of `<>` (aka Fragment tags) everywhere
 
 ## Advanced usage
 
