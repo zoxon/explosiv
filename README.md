@@ -4,63 +4,43 @@
 
 > A clone of the already beautiful [Dhow](https://www.github.com/kartiknair/dhow)
 
-JSX-powered SSG for Node.js. Write logic like React with a directory-structure like Next.js but generate plain HTML with no client side JS.
+## Benefits of using Explosiv over something like React
 
-- [Getting Started](#getting-started)
-- [What it does](#what-it-does)
-- [CSS Files](#css-files)
-- [The `Head` component](#the-head-component)
-- [How it works](#how-it-works)
-- [Contributing](#contributing)
+- Very easy to learn
+- Super duper fast (mainly because of using ESBuild)
+- No need to `render` or `hydrate` on the client-side
+- No need to server large Javascript bundles on the client-side (React, React-DOM, webpack, unecessary polyfills)
+- Pages load fast and run very smoothly, aiming always for 100% Lighthouse scores
 
-The default template will show you the basic structure of a Explosiv app but using something like the blog template will show you everything Explosiv can offer.
+## Improvements over Dhow
+
+- Use Explosiv without importing it everywhere, just write your code!
+- Allows use of `<>` (aka Fragment tags) everywhere
+
+JSX Static Site Generator.
 
 ### Getting started
 
-Let's walk through it.
+Install it as a development dependency.
 
-```shell
-# make a directory for your project
-mkdir my-app
-
-# change your directory
-cd my-app
-
-# initialize npm (optionally using `-y`)
-npm init -y
-
+```bash
 # install explosiv
-npm i explosiv
-
-# create a `./pages` directory
-mkdir pages
+npm i explosiv -D
 ```
 
-Once you're at this point add a few `.js` files to the `./pages` directory. After that we can set up our scripts in `package.json`. We're gonna add two scripts `dev` to start the Explosiv dev server & `build` to build the files a single time.
+Or just install it globally
 
-```diff
-{
-    "name": "my-app",
-    "version": "1.0.0",
-    "description": "Basic example using Explosiv as a Static Site Generator",
-    "main": "index.js",
-+    "scripts": {
-+        "dev": "explosiv dev",
-+        "build": "explosiv build"
-+    },
-    "author": "",
-    "license": "MIT",
-    "dependencies": {
-        "explosiv": "^1.2.1"
-    }
-}
+```bash
+# install explosiv
+npm i explosiv -g
 ```
 
-## What it does
+## Simple example
 
-Explosiv is basically a transpiler. It takes a `.js` file like this:
+Explosiv is basically a transpiler. When you give a basic JSX file like this:
 
 ```jsx
+// pages/index.js
 import Explosiv, { Head } from 'explosiv'
 
 export default () => (
@@ -74,9 +54,10 @@ export default () => (
 )
 ```
 
-and converts it into a static HTML file like this:
+It convert it into a static HTML file like this:
 
 ```html
+<!-- out/index.html -->
 <!DOCTYPE html>
 <html>
 	<head>
@@ -93,9 +74,16 @@ and converts it into a static HTML file like this:
 </html>
 ```
 
-You can also export an (optionally) async `getProps` function from your file to fetch data. This will be run during build time & the props that it returns will be passed to your `Head` component & default component.
+> Tip: You can omit the `import Explosiv from 'explosiv'`, unless you want to use `Head`.
+
+## Advanced usage
+
+### getProps
+
+If you export an optional `getProps` function from your file, that function will be called at build-time to get data.
 
 ```jsx
+// pages/blog.js
 import Explosiv, { Head } from 'explosiv'
 import fetch from 'node-fetch'
 
@@ -122,9 +110,12 @@ export const getProps = async () => {
 }
 ```
 
-To generate multiple files using a single `.js` file you can export an (optionally) async `getPaths` function from your file. It should return an array of strings. Each of them will replace your filename in the end result. Each of the paths will also be passed to your `getProps` function if you do export one.
+### getPaths
+
+You can encapsulate your file within square brackets like `[post].js` to get a dynamic number of pages. To define valid slugs, you use a `getPaths` function which can return an array of strings. Each of them will replace your filename in the end result. Each of the paths will also be passed to your `getProps` function if you export one.
 
 ```jsx
+// pages/[post].js
 import Explosiv, { Head } from 'explosiv'
 import { readFile, readdir } from 'fs/promises'
 import { join } from 'path'
