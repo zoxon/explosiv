@@ -25,9 +25,11 @@ const createElement = (tag, props, ...children) => {
 
 	children = [children].flat();
 
-	children.forEach((child) => {
-		appendChild(element, child)
-	})
+	if(children.length) {
+		children.forEach((child) => {
+			appendChild(element, child)
+		})
+	}
 
 	return element
 }
@@ -35,7 +37,7 @@ const createElement = (tag, props, ...children) => {
 const appendChild = (parent, child) => {
 	if (Array.isArray(child))
 		child.forEach((nestedChild) => appendChild(parent, nestedChild))
-	else
+	else if (child)
 		parent.appendChild(child.nodeType ? child : document.createTextNode(child))
 }
 
