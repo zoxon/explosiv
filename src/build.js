@@ -51,6 +51,7 @@ async function build(indir, outdir) {
 			},
 			jsxFactory: 'Explosiv.el',
 			jsxFragment: 'Explosiv.fragment',
+			inject: './explosiv.shim.js'
 		})
 	)
 
