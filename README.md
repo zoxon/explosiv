@@ -44,13 +44,13 @@ Explosiv is basically a transpiler. When you give a basic JSX file like this:
 import Explosiv, { Head } from 'explosiv'
 
 export default () => (
-	<main>
-		<Head>
-			<title>Home page</title>
-		</Head>
-		<h3>This is my home</h3>
-		<p>On the internet obviously</p>
-	</main>
+  <main>
+    <Head>
+      <title>Home page</title>
+    </Head>
+    <h3>This is my home</h3>
+    <p>On the internet obviously</p>
+  </main>
 )
 ```
 
@@ -60,17 +60,17 @@ It convert it into a static HTML file like this:
 <!-- out/index.html -->
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>Home page</title>
-	</head>
-	<body>
-		<div class="explosiv">
-			<main>
-				<h3>This is my home</h3>
-				<p>On the internet obviously</p>
-			</main>
-		</div>
-	</body>
+  <head>
+    <title>Home page</title>
+  </head>
+  <body>
+    <div class="explosiv">
+      <main>
+        <h3>This is my home</h3>
+        <p>On the internet obviously</p>
+      </main>
+    </div>
+  </body>
 </html>
 ```
 
@@ -88,25 +88,25 @@ import Explosiv, { Head } from 'explosiv'
 import fetch from 'node-fetch'
 
 export default ({ posts }) => (
-	<main>
-		<Head>
-			<title>Blog Posts</title>
-		</Head>
-		<h1>All the blog posts</h1>
-		<ul>
-			{posts.map((post) => (
-				<li>
-					<h3>{post.title}</h3>
-				</li>
-			))}
-		</ul>
-	</main>
+  <main>
+    <Head>
+      <title>Blog Posts</title>
+    </Head>
+    <h1>All the blog posts</h1>
+    <ul>
+      {posts.map((post) => (
+        <li>
+          <h3>{post.title}</h3>
+        </li>
+      ))}
+    </ul>
+  </main>
 )
 
 export const getProps = async () => {
-	const res = await fetch('https://jsonplaceholder.typicode.com/posts')
-	const data = await res.json()
-	return { posts: data }
+  const res = await fetch('https://jsonplaceholder.typicode.com/posts')
+  const data = await res.json()
+  return { posts: data }
 }
 ```
 
@@ -123,37 +123,37 @@ import matter from 'gray-matter'
 import marked from 'marked'
 
 export default ({
-	post: {
-		content,
-		data: { title, date, description },
-	},
+  post: {
+    content,
+    data: { title, date, description },
+  },
 }) => (
-	<article>
-		<Head>
-			<title>{title}</title>
-			<meta name="description" content={description} />
-		</Head>
+  <article>
+    <Head>
+      <title>{title}</title>
+      <meta name="description" content={description} />
+    </Head>
 
-		<h2>{title}</h2>
-		<p>
-			<small>{new Date(date).toDateString()}</small>
-		</p>
-		<p>{description}</p>
-		<h4>―</h4>
-		<div html={content}></div>
-	</article>
+    <h2>{title}</h2>
+    <p>
+      <small>{new Date(date).toDateString()}</small>
+    </p>
+    <p>{description}</p>
+    <h4>―</h4>
+    <div html={content}></div>
+  </article>
 )
 
 export const getPaths = async () => {
-	const files = await readdir('./content')
-	return files.map((path) => path.slice(0, path.length - 3))
+  const files = await readdir('./content')
+  return files.map((path) => path.slice(0, path.length - 3))
 }
 
 export const getProps = async (slug) => {
-	let post = await readFile(join('./content', `${slug}.md`), 'utf-8')
-	post = matter(post)
-	post.content = marked(post.content)
-	return { post }
+  let post = await readFile(join('./content', `${slug}.md`), 'utf-8')
+  post = matter(post)
+  post.content = marked(post.content)
+  return { post }
 }
 ```
 
