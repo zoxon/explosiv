@@ -2,24 +2,11 @@
 
 ![npm version](https://img.shields.io/npm/v/explosiv) ![License](https://img.shields.io/npm/l/explosiv)
 
+JSX Static Site Generator for Ambitious projects. Simple, powerful and performant.
+
 > A clone of the already beautiful [Dhow](https://www.github.com/kartiknair/dhow)
 
-## Benefits of using Explosiv over something like React
-
-- Very easy to learn
-- Super duper fast (mainly because of using ESBuild)
-- No need to `render` or `hydrate` on the client-side
-- No need to server large Javascript bundles on the client-side (React, React-DOM, webpack, unecessary polyfills)
-- Pages load fast and run very smoothly, aiming always for 100% Lighthouse scores
-
-## Improvements over Dhow
-
-- Use Explosiv without importing it everywhere, just write your code!
-- Allows use of `<>` (aka Fragment tags) everywhere
-
-JSX Static Site Generator.
-
-### Getting started
+## Getting started
 
 Install it as a development dependency.
 
@@ -34,6 +21,19 @@ Or just install it globally
 # install explosiv
 npm i explosiv -g
 ```
+
+### Benefits of using Explosiv over something like React
+
+- Very easy to learn
+- Super duper fast (mainly because of using ESBuild)
+- No need to `render` or `hydrate` on the client-side
+- No need to server large Javascript bundles on the client-side (React, React-DOM, webpack, unecessary polyfills)
+- Pages load fast and run very smoothly, aiming always for 100% Lighthouse scores
+
+### Improvements over Dhow
+
+- Use Explosiv without importing it everywhere, just write your code!
+- Allows use of `<>` (aka Fragment tags) everywhere
 
 ## Simple example
 
