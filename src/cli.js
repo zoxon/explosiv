@@ -37,7 +37,7 @@ cli
 cli
 	.command('serve')
 	.describe('Start a static file server')
-	.action(explosivDev)
+	.action(explosivServe)
 	.option(
 		'-d, --dir',
 		'Change directory whom files will be served. (defaults to `./out`)'
@@ -72,8 +72,8 @@ function explosivServe({ dir = 'out', port = 3000 }) {
 	http.createServer(server).listen(process.env.PORT || port, (err) => {
 		if (err) throw err
 		console.log(
-			`Dev server is live on: ${chalk.cyan(
-				`https://localhost:${process.env.PORT || port}`
+			`Static server is live at: ${chalk.cyan(
+				`http://localhost:${process.env.PORT || port}`
 			)}\n`
 		)
 	})
@@ -120,8 +120,8 @@ function explosivDev({
 		http.createServer(server).listen(process.env.PORT || port, (err) => {
 			if (err) throw err
 			console.log(
-				`Dev server is live on: ${chalk.cyan(
-					`https://localhost:${process.env.PORT || port}`
+				`Dev server is live at: ${chalk.cyan(
+					`http://localhost:${process.env.PORT || port}`
 				)}\n`
 			)
 		})
