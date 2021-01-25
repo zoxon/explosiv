@@ -15,8 +15,7 @@ const { removeSync } = require('fs-extra')
 
 const cli = sade('explosiv')
 
-cli
-	.version('2.0.0')
+cli.version('2.0.0')
 
 cli
 	.command('dev')
@@ -63,10 +62,7 @@ cli
 
 cli.parse(process.argv)
 
-function explosivServe({
-	dir = 'out',
-	port = 3000,
-}) {
+function explosivServe({ dir = 'out', port = 3000 }) {
 	const assets = sirv(resolve(dir), {
 		dev: true,
 	})
@@ -92,7 +88,8 @@ function explosivDev({
 
 	const watcher = chokidar.watch('.', {
 		ignoreInitial: true,
-		ignored: (path) => path.startsWith(devdir) || path.startsWith('node_modules'),
+		ignored: (path) =>
+			path.startsWith(devdir) || path.startsWith('node_modules'),
 	})
 
 	const spinner = ora('Building...')

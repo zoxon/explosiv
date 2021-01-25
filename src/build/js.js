@@ -17,7 +17,6 @@ let buildJS = async (indir, outdir) => {
 	try {
 		// Part 5: write Into DOM
 		let writePageDOM = async (pageDOM, path) => {
-
 			document = newDocument(indir, outdir)
 			const rootEl = document.getElementsByClassName('root')[0]
 
@@ -32,8 +31,10 @@ let buildJS = async (indir, outdir) => {
 			// Add elements at the top of head
 			// TODO: Add better head function
 			for (var i = global.headContents.length - 1; i >= 0; i--) {
-
-				document.head.insertBefore(global.headContents[i], document.head.childNodes[0])
+				document.head.insertBefore(
+					global.headContents[i],
+					document.head.childNodes[0]
+				)
 			}
 
 			await ensureFile(path)
@@ -93,10 +94,15 @@ let buildJS = async (indir, outdir) => {
 					? await fileExports.getProps(path)
 					: {}
 
-				let src;
+				let src
 
 				if (path) src = join(basedir, dirname(filePath), path, 'index.html')
-				else src = join(basedir, filePath.endsWith('index') ? '' : filePath, 'index.html')
+				else
+					src = join(
+						basedir,
+						filePath.endsWith('index') ? '' : filePath,
+						'index.html'
+					)
 
 				await writePageDOM(fileExports.default(props), src)
 			}
