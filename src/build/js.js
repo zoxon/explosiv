@@ -1,6 +1,7 @@
 const {
 	join,
 	resolve,
+	dirname,
 	posix: { join: posixJoin, normalize: posixNormalize },
 } = require('path')
 const { ensureFile, writeFile, remove } = require('fs-extra')
@@ -11,11 +12,11 @@ const newDocument = require('./document')
 let buildJS = async (indir, outdir) => {
 	const basedir = resolve(outdir)
 	const service = await startService()
+	global.headContents = []
 
 	try {
 		// Part 5: write Into DOM
 		let writePageDOM = async (pageDOM, path) => {
-			global.headContents = []
 
 			document = newDocument(indir, outdir)
 			const rootEl = document.getElementsByClassName('root')[0]
@@ -89,14 +90,12 @@ let buildJS = async (indir, outdir) => {
 					? await fileExports.getProps(path)
 					: {}
 
-				await writePageDOM(
-					fileExports.default(props),
-					join(
-						basedir,
-						filePath.endsWith('index') ? '' : filePath,
-						'index.html'
-					)
-				)
+				let src;
+
+				if (path) src = join(basedir, dirname(filePath), path, 'index.html')
+				else src = join(basedir, filePath.endsWith('index') ? '' : filePath, 'index.html')
+
+				await writePageDOM(fileExports.default(props), src)
 			}
 
 			// Part 2...
