@@ -9,7 +9,7 @@ export default () => (
 		<p>
 			This is a super simple example of generating static files using Explosiv.
 			You can learn more{' '}
-			<a href="https://github.com/kartiknair/explosiv">here</a>
+			<a href="https://github.com/vixalien/explosiv">here</a>
 		</p>
 		<p>
 			Here's a <a href="/about">link to the about page</a> just for good fun :D

@@ -11,7 +11,7 @@
 	"author": "",
 	"license": "MIT",
 	"dependencies": {
-		"explosiv": "^1.0.0",
+		"explosiv": "file:../..",
 		"tailwindcss": "^1.6.2"
 	}
 }

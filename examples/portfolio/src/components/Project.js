@@ -1,4 +1,4 @@
-import Dhow from 'dhow'
+import Explosiv from 'explosiv'
 
 const Project = ({ data: { title, description, image, image_alt, color } }) => (
 	<a
