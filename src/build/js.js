@@ -29,8 +29,11 @@ let buildJS = async (indir, outdir) => {
 				rootEl.appendChild(pageDOM)
 			}
 
-			for (let node of global.headContents) {
-				document.head.appendChild(node)
+			// Add elements at the top of head
+			// TODO: Add better head function
+			for (var i = global.headContents.length - 1; i >= 0; i--) {
+
+				document.head.insertBefore(global.headContents[i], document.head.childNodes[0])
 			}
 
 			await ensureFile(path)
