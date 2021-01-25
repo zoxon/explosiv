@@ -1,1 +1,1 @@
-export * as Explosiv from 'explosiv';
+export * as Explosiv from 'explosiv'

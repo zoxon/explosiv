@@ -81,20 +81,16 @@ function explosivDev({
 			dev: true,
 		})
 
-		let server = connect()
-			.use(compression())
-			.use(morgan('dev'))
-			.use(assets)
+		let server = connect().use(compression()).use(morgan('dev')).use(assets)
 
-		http.createServer(server)
-			.listen(process.env.PORT || port, (err) => {
-				if (err) throw err
-				console.log(
-					`Dev server is live on: ${chalk.cyan(
-						`https://localhost:${process.env.PORT || port}`
-					)}\n`
-				)
-			})
+		http.createServer(server).listen(process.env.PORT || port, (err) => {
+			if (err) throw err
+			console.log(
+				`Dev server is live on: ${chalk.cyan(
+					`https://localhost:${process.env.PORT || port}`
+				)}\n`
+			)
+		})
 	})
 
 	function exitHandler() {

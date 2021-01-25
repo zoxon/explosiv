@@ -23,31 +23,30 @@ const createElement = (tag, props, ...children) => {
 		} else element.setAttribute(name, value.toString())
 	})
 
-	children = [children].flat();
+	children = [children].flat()
 
-	if(children.length) {
-		children.forEach((child) => {
-			appendChild(element, child)
-		})
-	}
+	children.forEach((child) => {
+		appendChild(element, child)
+	})
 
 	return element
 }
 
 const appendChild = (parent, child) => {
-	if (Array.isArray(child))
+	if (Array.isArray(child)) {
 		child.forEach((nestedChild) => appendChild(parent, nestedChild))
-	else if (child)
+	} else if (child) {
 		parent.appendChild(child.nodeType ? child : document.createTextNode(child))
+	}
 }
 
 const createFragment = ({ children, ...props }) => {
 	return [children]
 		.flat()
-		.map(child => child.nodeType ? child : document.createTextNode(child))
+		.map((child) => (child.nodeType ? child : document.createTextNode(child)))
 }
 
-const Head = (props, ...children) => {
+const Head = ({ children, ...props }) => {
 	// TODO: Don't use a global variable
 	global.headContents = children
 	return false
