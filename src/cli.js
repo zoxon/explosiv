@@ -17,15 +17,15 @@ const cli = sade('explosiv')
 
 cli
 	.version('2.0.0')
-	.option(
-		'-i, --indir',
-		'Change input directory for your files. (defaults to `./pages`)'
-	)
 
 cli
 	.command('dev')
 	.describe('Start the dev server, & rebuilds static files on file change')
 	.action(explosivDev)
+	.option(
+		'-i, --indir',
+		'Change input directory for your files. (defaults to `./pages`)'
+	)
 	.option(
 		'-d, --devdir',
 		'Change directory where your temporary development builds are stored. (defaults to `./__explosiv__`)'
@@ -36,15 +36,52 @@ cli
 	)
 
 cli
+	.command('serve')
+	.describe('Start a static file server')
+	.action(explosivDev)
+	.option(
+		'-d, --dir',
+		'Change directory whom files will be served. (defaults to `./out`)'
+	)
+	.option(
+		'-p, --port',
+		'Change port for `server`. (defaults to process.env.PORT or `3000`)'
+	)
+
+cli
 	.command('build')
 	.describe('Build production ready static files')
 	.action(explosivProd)
+	.option(
+		'-i, --indir',
+		'Change input directory for your files. (defaults to `./pages`)'
+	)
 	.option(
 		'-o, --outdir',
 		'Change output directory of your `build` command. (defaults to `./out`)'
 	)
 
 cli.parse(process.argv)
+
+function explosivServe({
+	dir = 'out',
+	port = 3000,
+}) {
+	const assets = sirv(resolve(dir), {
+		dev: true,
+	})
+
+	let server = connect().use(compression()).use(morgan('dev')).use(assets)
+
+	http.createServer(server).listen(process.env.PORT || port, (err) => {
+		if (err) throw err
+		console.log(
+			`Dev server is live on: ${chalk.cyan(
+				`https://localhost:${process.env.PORT || port}`
+			)}\n`
+		)
+	})
+}
 
 function explosivDev({
 	indir = 'pages',
@@ -55,7 +92,7 @@ function explosivDev({
 
 	const watcher = chokidar.watch('.', {
 		ignoreInitial: true,
-		ignored: (path) => path.startsWith(devdir),
+		ignored: (path) => path.startsWith(devdir) || path.startsWith('node_modules'),
 	})
 
 	const spinner = ora('Building...')
