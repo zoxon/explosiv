@@ -1,14 +1,17 @@
 {
 	"name": "explosiv",
-	"version": "1.0.8",
+	"version": "2.0.0",
 	"description": "JSX-powered SSG for Node.js",
-	"main": "./src/jsx-runtime.js",
+	"main": "./dist/jsx-runtime.js",
 	"bin": {
-		"explosiv": "src/cli.js"
+		"explosiv": "dist/cli.js"
 	},
 	"scripts": {
 		"test": "uvu -r esbuild-register test"
 	},
+	"files": [
+		"dist"
+	],
 	"keywords": [],
 	"author": "",
 	"license": "MIT",
