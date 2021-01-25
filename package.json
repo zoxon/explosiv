@@ -7,7 +7,8 @@
 		"explosiv": "dist/cli.js"
 	},
 	"scripts": {
-		"test": "uvu -r esbuild-register test"
+		"test": "uvu -r esbuild-register test",
+		"build": "./build"
 	},
 	"files": [
 		"dist"
@@ -33,10 +34,6 @@
 	"devDependencies": {
 		"esbuild-register": "^1.0.2",
 		"uvu": "^0.3.2"
-	},
-	"directories": {
-		"example": "examples",
-		"test": "test"
 	},
 	"repository": {
 		"type": "git",
