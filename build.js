@@ -5,7 +5,7 @@ let Build = async () => {
 	const service = await startService();
 	try {
 		await service.build({
-			entryPoints: ['src/build.js', 'src/cli.js'],
+			entryPoints: ['src/jsx-runtime.js', 'src/cli.js'],
 			outdir: 'dist',
 			bundle: true,
 			platform: 'node',
