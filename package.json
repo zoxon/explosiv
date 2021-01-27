@@ -8,7 +8,7 @@
 	},
 	"scripts": {
 		"test": "uvu -r esbuild-register test",
-		"build": "./build"
+		"build": "node ./build"
 	},
 	"files": [
 		"dist"
