@@ -61,6 +61,8 @@ It convert it into a static HTML file like this:
 </html>
 ```
 
+> There is an [article about how Explosiv works][article].
+
 > Tip: You can omit the `import Explosiv from 'explosiv'`, unless you want to use `Head`.
 
 ## Advanced usage
@@ -251,3 +253,5 @@ Feel free to add any features you might find useful. Just open an issue and we c
 - Allows use of `<>` (aka Fragment tags) everywhere
 - A more reactive API e.g: `({ children, ...props })` instead of `(props, ...children)`.
 - Allows using `className` instead of `class`
+
+[article]: https://vixalien.ga/post/explosiv
