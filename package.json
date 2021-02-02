@@ -1,6 +1,6 @@
 {
 	"name": "explosiv",
-	"version": "2.0.0",
+	"version": "2.1.0",
 	"description": "JSX-powered SSG for Node.js",
 	"main": "./dist/jsx-runtime.js",
 	"bin": {
