@@ -249,9 +249,15 @@ Feel free to add any features you might find useful. Just open an issue and we c
 
 ### Improvements over Dhow
 
-- Use Explosiv without importing it everywhere, just write your code!
-- Allows use of `<>` (aka Fragment tags) everywhere
-- A more reactive API e.g: `({ children, ...props })` instead of `(props, ...children)`.
-- Allows using `className` instead of `class`
+- Provide an `explosiv serve` command that serve a static directory on a specified port (defaults to  3000).
+- `Head` elements are added on top of `document.head` instead of the bottom (allowing overriding existing tags)
+- Rewritten for `build` code to be independent and ease debugging
+- Does not use `polka` but the more minimal `connect`.
+- Use middleware deemed as useful like `morgan` which log all requests and `compression` which compress resources on HTTP.
+- Fixed bugs on edge cases like rendering `<>` (aka Fragment tags) as root elements and rendering empty children.
+- Added support for `className` HTML attribute.
+- Fixed bug where self-closing (like `<img src="/path/to.img">`) elements doesn't render correctly.
+- Use tabs instead of 4 spaces lol!
+- And other many but subtle changes.
 
 [article]: https://vixalien.ga/post/explosiv
