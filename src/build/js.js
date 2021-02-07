@@ -67,7 +67,7 @@ let buildJS = async (indir, outdir) => {
 				},
 				jsxFactory: 'Explosiv.el',
 				jsxFragment: 'Explosiv.fragment',
-				inject: './explosiv.shim.js',
+				inject: [resolve(__dirname, './explosiv.shim.js')],
 			})
 		)
 

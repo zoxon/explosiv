@@ -1,4 +1,6 @@
 const fs = require('fs')
+const { resolve } = require('path');
+const { copy } = require('fs-extra');
 const { startService } = require('esbuild')
 
 let Build = async () => {
@@ -15,6 +17,7 @@ let Build = async () => {
 	} finally {
 		service.stop()
 	}
+	await copy(resolve('src/explosiv.shim.js'), resolve('dist/explosiv.shim.js'))
 }
 
 Build()
