@@ -28,8 +28,6 @@ Explosiv is basically a transpiler. When you give a basic JSX file like this:
 
 ```jsx
 // pages/index.js
-import Explosiv, { Head } from 'explosiv'
-
 export default () => (
   <main>
     <Head>
@@ -61,9 +59,9 @@ It convert it into a static HTML file like this:
 </html>
 ```
 
-> There is an [article about how Explosiv works][article].
+> Note the use of `Head`, which is a built in component
 
-> Tip: You can omit the `import Explosiv from 'explosiv'`, unless you want to use `Head`.
+> There is an [article about how Explosiv works][article].
 
 ## Advanced usage
 
@@ -73,7 +71,6 @@ If you export an optional `getProps` function from your file, that function will
 
 ```jsx
 // pages/blog.js
-import Explosiv, { Head } from 'explosiv'
 import fetch from 'node-fetch'
 
 export default ({ posts }) => (
@@ -99,13 +96,14 @@ export const getProps = async () => {
 }
 ```
 
+> Here the data is passed to the component as `posts`
+
 ### getPaths
 
 You can encapsulate your file within square brackets like `[post].js` to get a dynamic number of pages. To define valid slugs, you use a `getPaths` function which can return an array of strings. Each of them will replace your filename in the end result. Each of the paths will also be passed to your `getProps` function if you export one.
 
 ```jsx
 // pages/[post].js
-import Explosiv, { Head } from 'explosiv'
 import { readFile, readdir } from 'fs/promises'
 import { join } from 'path'
 import matter from 'gray-matter'
@@ -163,8 +161,6 @@ import Explosiv, { Head } from 'explosiv'
 And then whatever you put inside it will be inserted into the paage head at build time:
 
 ```jsx
-import Explosiv, { Head } from 'explosiv'
-
 export default () => (
     <main>
         <Head>
@@ -190,8 +186,6 @@ export default () => (
 The `Head` component prioritizes children components. Do if you have a `Head` component on the parent & on the child. The childs `Head` contents will **completely override** the page head. Example:
 
 ```jsx
-import Explosiv, { Head } from 'explosiv'
-
 const Child = () => (
     <div>
         <Head>
@@ -239,25 +233,9 @@ If you export a `getProps` function then the results of that function are passed
 
 Feel free to add any features you might find useful. Just open an issue and we can go there. If you find a bug you can also open an issue but please make sure to include details like your system, node version, etc.
 
-### Benefits of using Explosiv over something like React
+## Bottom line
 
-- Very easy to learn
-- Super duper fast (mainly because of using ESBuild)
-- No need to `render` or `hydrate` on the client-side
-- No need to server large Javascript bundles on the client-side (React, React-DOM, webpack, unecessary polyfills)
-- Pages load fast and run very smoothly, aiming always for 100% Lighthouse scores
-
-### Improvements over Dhow
-
-- Provide an `explosiv serve` command that serve a static directory on a specified port (defaults to  3000).
-- `Head` elements are added on top of `document.head` instead of the bottom (allowing overriding existing tags)
-- Rewritten for `build` code to be independent and ease debugging
-- Does not use `polka` but the more minimal `connect`.
-- Use middleware deemed as useful like `morgan` which log all requests and `compression` which compress resources on HTTP.
-- Fixed bugs on edge cases like rendering `<>` (aka Fragment tags) as root elements and rendering empty children.
-- Added support for `className` HTML attribute.
-- Fixed bug where self-closing (like `<img src="/path/to.img">`) elements doesn't render correctly.
-- Use tabs instead of 4 spaces lol!
-- And other many but subtle changes.
+Please read the [notes] to get Improvements over Dhow, and differences with React.
 
 [article]: https://vixalien.ga/post/explosiv
+[notes]: https://github.com/vixalien/explosiv/blob/master/notes.md
