@@ -14,7 +14,7 @@ npm i explosiv -D
 
 ## Simple example
 
-Explosiv allow you to build static sites written in JSX. To get started, ceate a file called `pages/index.js`:
+Explosiv allow you to build static sites written in JSX. To get started, create a file called `pages/index.js`:
 
 ```js
 // pages/index.js
@@ -37,7 +37,7 @@ npx explosiv build
 
 Your site will be exported into the `out/` directory.
 
-> An alternate way to use: Install Explosiv globally `npm i explosiv -g` then run your commands like `explosiv build`
+> An alternate way to use: Install Explosiv globally `npm i explosiv -g` then run your commands like this: `explosiv build`
 
 > There is an [article about how Explosiv works][article].
 
@@ -48,13 +48,13 @@ Your site will be exported into the `out/` directory.
 **With Fragment tags**
 
 ```js
-// pages/index.js
+// pages/fragment.js
 export default () => (
   <main>
     <h3>Hello!</h3>
     <>
-    	<p>On the internet obviously</p>
     	<p>I'm vixalien</p>
+    	<p>But only on the internet</p>
     </>
   </main>
 )
@@ -65,13 +65,14 @@ export default () => (
 **`style` can either be an Object or String**
 
 ```js
+// pages/style-prop.js
 export default () => (
   <main>
     <Head>
       <title>Home page</title>
     </Head>
-    <h3 style="color: blue;">This is my home</h3>
-    <p style={{color: 'pink'}}>On the internet obviously</p>
+    <p style="color: blue;">This is my blue paragraph</p>
+    <p style={{color: 'blue'}}>This does the same thing</p>
   </main>
 )
 ```
@@ -80,16 +81,17 @@ export default () => (
 
 **`class` and `className`**
 
-Passing the `class` or `className` props will all the export a `class` HTML attribute.
+The `className` prop will export a `class` HTML attribute.
 
 ```js
+// pages/className-is-same-as-class.js
 export default () => (
   <main>
     <Head>
       <title>Home page</title>
     </Head>
-    <h3 class="heading">This is my home</h3>
-    <p> className="paragraph"On the internet obviously</p>
+    <p> class="fancy">This is my fancy paragraph</p>
+    <p> className="fancy">Another similarly fancy paragraph</p>
   </main>
 )
 ```
@@ -101,7 +103,7 @@ export default () => (
 `Head` will export it's children into the `<head>` of HTML. Useful for SEO!
 
 ```js
-// pages/index.js
+// pages/Head.js
 export default () => (
   <main>
     <Head>
@@ -150,7 +152,7 @@ export getProps = () => {
 If you name your file like `[slug].js`, (i.e with curly brackets) and export `getPaths`, it will be called at build time to get all possible slugs.
 
 ```js
-// pages/[post].js
+// pages/[posts].js
 export default (data) => (
   <main>
     <Head>
@@ -172,6 +174,8 @@ export getData = () => {
 }
 ```
 
+<br/>
+
 ## Public files
 
 Files in `public/` will be copied into your build output. However, CSS files will be processed with [PostCSS](https://github.com/postcss/postcss). This means you can create a `postcss.config.js` file in the root of your directory, and Explosiv will use the plugins you use in that file (you can see this in the [TailwindCSS example](https://github.com/vixalien/explosiv/tree/master/examples/tailwind)).
@@ -185,10 +189,10 @@ Start the dev server, & rebuilds static files on file change
 | Option          | Description                               | Default        |
 | --------------- | ----------------------------------------- | -------------- |
 | -i, --indir     | Change input directory for your files.    | `./pages`        |
-| -d, --devdir    | Change directory where your temporary development builds are  stored.  | `./\_\_explosiv\_\_` |
+| -d, --devdir    | Change directory where your temporary development builds are  stored.  | `./__explosiv__` |
 | -p, --port      | Change port for `dev server`              | process.env.PORT or `3000` |
 
-<b/>
+<br/>
 
 **explosiv serve**
 
@@ -199,7 +203,7 @@ Start a static file server
 | -d, --dir       | Change input directory for your files.    | `./pages`      |
 | -p, --port      | Change port for `dev server`              | process.env.PORT or `3000` |
 
-<b/>
+<br/>
 
 **explosiv build**
 
@@ -210,7 +214,7 @@ Build production ready static files
 | -i, --indir     | Change input directory for your files.    | ./pages        |
 | -d, --devdir    | Change directory where your temporary development builds are  stored.  | \_\_explosiv\_\_ |
 
-<b/>
+<br/>
 
 ## API
 
@@ -237,6 +241,17 @@ Add children to the DOM's `<head>` element. Available built-in, no need to impor
 ### Fragment({ children, ...props })
 
 Add children to the parent component without creating a new HTML element. Built-in in JSX as `<>text</>`
+
+## Contributing
+
+Feel free to add any features you might find useful. Just open an issue and we can go there. If you find a bug you can also open an issue but please make sure to include details like your system, node version, etc.
+
+## Bottom line
+
+Please read the [notes] to see Improvements over Dhow, and differences with React.
+
+[article]: https://vixalien.ga/post/explosiv
+[notes]: https://github.com/vixalien/explosiv/blob/master/notes.md
 
 [react]: https://reactjs.org
 [examples]: https://github.com/vixalien/explosiv/tree/master/examples

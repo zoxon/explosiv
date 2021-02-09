@@ -15,10 +15,10 @@
 
 ## Benefits of using Explosiv over something like React
 
-- Very easy to learn
-- Super duper fast (mainly because of using ESBuild)
+- Very easy to learn (if you already know HTML _or_ React)
+- Super duper fast builds (mainly because of using ESBuild)
 - No need to `render` or `hydrate` on the client-side
-- No need to server large Javascript bundles on the client-side (React, React-DOM, webpack, unecessary polyfills)
+- No need to load large Javascript bundles on the client-side (React, React-DOM, webpack, unnecessary polyfills)
 - Pages load fast and run very smoothly, aiming always for 100% Lighthouse scores
 
 > Whatever you do, note that Explosiv is for building static sites only. Not fully featured sites that use data at runtime server-side. If you want something complex, your best bet is [Next.js](https://nextjs.org)
