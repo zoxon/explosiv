@@ -8,6 +8,7 @@ const compression = require('compression')
 const connect = require('connect')
 const morgan = require('morgan')
 const http = require('http')
+const { readFileSync } = require('fs')
 const chalk = require('chalk')
 const sade = require('sade')
 const build = require('./build')
@@ -15,7 +16,7 @@ const { removeSync } = require('fs-extra')
 
 const cli = sade('explosiv')
 
-cli.version('2.0.0')
+cli.version(JSON.parse(readFileSync(resolve(__dirname, '..', 'package.json'))).version)
 
 cli
 	.command('dev')
