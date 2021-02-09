@@ -1,7 +1,7 @@
 {
 	"name": "explosiv",
-	"version": "2.2.0",
-	"description": "JSX-powered SSG for Node.js",
+	"version": "2.3.0",
+	"description": "Simple and powerful JSX Static Site Generator.",
 	"main": "./dist/jsx-runtime.js",
 	"bin": {
 		"explosiv": "dist/cli.js"
