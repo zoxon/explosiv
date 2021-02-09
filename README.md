@@ -1,25 +1,22 @@
-# Explosiv
-
-![npm version](https://img.shields.io/npm/v/explosiv) ![License](https://img.shields.io/npm/l/explosiv) ![Size](https://img.shields.io/bundlephobia/minzip/explosiv)
-
-JSX Static Site Generator for Ambitious projects. Simple, powerful and performant.
+# 🧨 Explosiv ![npm version](https://img.shields.io/npm/v/explosiv) ![License](https://img.shields.io/npm/l/explosiv) ![Size](https://img.shields.io/bundlephobia/minzip/explosiv)
 
 > A fork of the already beautiful [Dhow](https://www.github.com/kartiknair/dhow)
 
+Simple and powerful JSX Static Site Generator.
+
 ## Getting started
 
-Install it to your development dependencies.
+1. Install it to your development dependencies.
 
 ```bash
-# install explosiv
 npm i explosiv -D
 ```
 
 ## Simple example
 
-Explosiv is basically a transpiler. Create a file `pages/index.js`:
+Explosiv is allow you to build JSX sites similar to [React]. Create a file `pages/index.js`:
 
-```jsx
+```js
 // pages/index.js
 export default () => (
   <main>
@@ -32,209 +29,215 @@ export default () => (
 )
 ```
 
-To build your pages (pages are in `pages/` by default).
+Then build your static site! It's this simple.
 
 ```bash
 npx explosiv build
 ```
 
-Explosiv will generate a static site in `out/` with a file `out/index.html` like this:
+Your site will be exported into the `out/` directory.
 
-```html
-<!-- out/index.html -->
-<!DOCTYPE html>
-<html>
-  <Head>
-    <title>Home page</title>
-  </Head>
-  <body>
-    <div class="explosiv">
-      <main>
-        <h3>This is my home</h3>
-        <p>On the internet obviously</p>
-      </main>
-    </div>
-  </body>
-</html>
+> An alternate way to use: Install Explosiv globally `npm i explosiv -g` then run your commands like `explosiv build`
+
+
+## Usage
+
+> There are real-world examples in [the `examples/` directory](examples)
+
+**With Fragment tags**
+
+```js
+// pages/index.js
+export default () => (
+  <main>
+    <h3>Hello!</h3>
+    <>
+    	<p>On the internet obviously</p>
+    	<p>I'm vixalien</p>
+    </>
+  </main>
+)
 ```
 
-> Note the use of `Head`, which is a built in component
+<br/>
 
-> There is an [article about how Explosiv works][article].
+**`style` can either be an Object or String**
 
-## Advanced usage
+Passing the `class` or `className` props will do the export a `class` HTML attribute.
 
-### getProps
-
-If you export an optional `getProps` function from your file, that function will be called at build-time to get data.
-
-```jsx
-// pages/blog.js
-import fetch from 'node-fetch'
-
-export default ({ posts }) => (
+```js
+export default () => (
   <main>
     <Head>
-      <title>Blog Posts</title>
+      <title>Home page</title>
     </Head>
-    <h1>All the blog posts</h1>
-    <ul>
-      {posts.map((post) => (
-        <li>
-          <h3>{post.title}</h3>
-        </li>
-      ))}
-    </ul>
+    <h3 style="color: blue;">This is my home</h3>
+    <p style={{color: 'pink'}}>On the internet obviously</p>
+  </main>
+)
+```
+
+<br/>
+
+**`class` and `className`**
+
+Passing the `class` or `className` props will all the export a `class` HTML attribute.
+
+```js
+export default () => (
+  <main>
+    <Head>
+      <title>Home page</title>
+    </Head>
+    <h3 class="heading">This is my home</h3>
+    <p> className="paragraph"On the internet obviously</p>
+  </main>
+)
+```
+
+<br/>
+
+**Using `Head`**
+
+`Head` will export it's children into the `<head>` of HTML. Useful for SEO!
+
+```js
+// pages/index.js
+export default () => (
+  <main>
+    <Head>
+      <title>Home page</title>
+      <meta name="description" content="This is my Internet home"/>
+    </Head>
+    <h3>This is my home</h3>
+    <p>On the internet obviously</p>
+  </main>
+)
+```
+
+<br/>
+
+**Using getProps**
+
+If you export `getProps`, it will be called at build time to any data you may require. That data will be passed into the main export of your file.
+
+```js
+// pages/onepost.js
+export default (data) => (
+  <main>
+    <Head>
+      <title>{data.name}</title>
+      <meta name="description" content={data.description}/>
+    </Head>
+    <h3>Post name: {data.name}</h3>
+    <p>Description: {data.description}</p>
+    <small>Created: {data.created}</small>
   </main>
 )
 
-export const getProps = async () => {
-  const res = await fetch('https://jsonplaceholder.typicode.com/posts')
-  const data = await res.json()
-  return { posts: data }
+export getProps = () => {
+	return {
+		name: 'Post',
+		description: 'A Post lol',
+		created: 'Yesterday'
+	}
 }
 ```
 
-> Here the data is passed to the component as `posts`
+<br/>
 
-### getPaths
+**Using getPaths**
 
-You can encapsulate your file within square brackets like `[post].js` to get a dynamic number of pages. To define valid slugs, you use a `getPaths` function which can return an array of strings. Each of them will replace your filename in the end result. Each of the paths will also be passed to your `getProps` function if you export one.
+If you name your file like `[slug].js`, (i.e with curly brackets) and export `getPaths`, it will be called at build time to get all possible slugs.
 
-```jsx
+```js
 // pages/[post].js
-import { readFile, readdir } from 'fs/promises'
-import { join } from 'path'
-import matter from 'gray-matter'
-import marked from 'marked'
-
-export default ({
-  post: {
-    content,
-    data: { title, date, description },
-  },
-}) => (
-  <article>
+export default (data) => (
+  <main>
     <Head>
-      <title>{title}</title>
-      <meta name="description" content={description} />
+      <title>{data.name}</title>
+      <meta name="description" content={data.description}/>
     </Head>
-
-    <h2>{title}</h2>
-    <p>
-      <small>{new Date(date).toDateString()}</small>
-    </p>
-    <p>{description}</p>
-    <h4>―</h4>
-    <div html={content}></div>
-  </article>
+    <h3>Post name: {data.name}</h3>
+    <p>Description: {data.description}</p>
+    <small>Created: {data.created}</small>
+  </main>
 )
 
-export const getPaths = async () => {
-  const files = await readdir('./content')
-  return files.map((path) => path.slice(0, path.length - 3))
+export getProps = (slug) => {
+	return somehowGetDataAboutPost(slug);
 }
 
-export const getProps = async (slug) => {
-  let post = await readFile(join('./content', `${slug}.md`), 'utf-8')
-  post = matter(post)
-  post.content = marked(post.content)
-  return { post }
+export getData = () => {
+	return ['post1', 'post2']
 }
 ```
 
-## CSS Files
+## Public files
 
-Explosiv uses [PostCSS](https://github.com/postcss/postcss) under the hood to process all your CSS files. This means you can create a `postcss.config.js` file in the root of your directory, and Explosiv will use the plugins you use in that file (you can see this in the [TailwindCSS example](https://github.com/kartiknair/explosiv/tree/master/examples/tailwind)).
+Files in `public/` will be copied into your build output. However, CSS files will be processed with [PostCSS](https://github.com/postcss/postcss). This means you can create a `postcss.config.js` file in the root of your directory, and Explosiv will use the plugins you use in that file (you can see this in the [TailwindCSS example](https://github.com/vixalien/explosiv/tree/master/examples/tailwind)).
 
-> Note: Explosiv unlike some bundlers (like Parcel) uses **no plugins by default**
+## CLI
 
-## The `Head` component
+**explosiv dev**
 
-To manage the contents of the document head you can use the `Head` component that Explosiv exports. `Head` is built-in natively. But you can import it like this:
+Start the dev server, & rebuilds static files on file change
 
-```jsx
-import { Head } from 'explosiv'
-```
+| Option          | Description                               | Default        |
+| --------------- | ----------------------------------------- | -------------- |
+| -i, --indir     | Change input directory for your files.    | `./pages`        |
+| -d, --devdir    | Change directory where your temporary development builds are  stored.  | `./\_\_explosiv\_\_` |
+| -p, --port      | Change port for `dev server`              | process.env.PORT or `3000` |
 
-And then whatever you put inside it will be inserted into the paage head at build time:
+<b/>
 
-```jsx
-export default () => (
-    <main>
-        <Head>
-            <title>Hello there</title>
-        </Head>
-        <h1>Hello world</h1>
-    </main>
-)
+**explosiv serve**
 
-/* Will become this: */
-<html>
-    <head>
-        <title>Hello there</title>
-    </head>
-    <body>
-        <div class="explosiv">
-            <h1>Hello world</h1>
-        </div>
-    </body>
-<html>
-```
+Start a static file server
 
-The `Head` component prioritizes children components. Do if you have a `Head` component on the parent & on the child. The childs `Head` contents will **completely override** the page head. Example:
+| Option          | Description                               | Default        |
+| --------------- | ----------------------------------------- | -------------- |
+| -d, --dir       | Change input directory for your files.    | `./pages`      |
+| -p, --port      | Change port for `dev server`              | process.env.PORT or `3000` |
 
-```jsx
-const Child = () => (
-    <div>
-        <Head>
-            <title>Hello there from the child</title>
-        </Head>
-        <p>I'm a nested component</p>
-    </div>
-)
+<b/>
 
-export default () => (
-    <main>
-        <Head>
-            <title>Hello there</title>
-        </Head>
-        <h1>Hello world</h1>
-        <Child />
-    </main>
-)
+**explosiv build**
 
-/* Will become this: */
-<html>
-    <head>
-        <title>Hello there from the child</title>
-    </head>
-    <body>
-        <div class="explosiv">
-            <h1>Hello world</h1>
-            <p>I'm a nested component</p>
-        </div>
-    </body>
-<html>
-```
+Build production ready static files
 
-This is similar to the behaviour in other libraries like [Helmet](https://github.com/nfl/react-helmet)
+| Option          | Description                               | Default        |
+| --------------- | ----------------------------------------- | -------------- |
+| -i, --indir     | Change input directory for your files.    | ./pages        |
+| -d, --devdir    | Change directory where your temporary development builds are  stored.  | \_\_explosiv\_\_ |
 
-## How it works
+<b/>
 
-Behind the scenes Explosiv is actually pretty simple, it uses [`min-document`](https://github.com/Raynos/min-document) & [`esbuild`](https://github.com/evanw/esbuild) to create fake DOM nodes from your JSX.
+## API
 
-As a CLI tool Explosiv takes `.js` files from your `./pages` directory & uses esbuild to compile it into non-JSX. Then it calls your default export function and appends the element it returns to a `.explosiv` div in the document. If you do export a `Head` function then the contents of that are added to the `<head>` of the document. Then the `outerHTML` of this document is saved into an `html` file corresponding to the path of your source file.
+There is no case we can see you doing `require('explosiv')`. But, it exports a JSX Runtime, that we uses under the hood to transform your JSX pages into HTML. Functions it export are listed here.
 
-If you export a `getProps` function then the results of that function are passed to your default & `Head` component. If you export a `getPaths` function then the same file is evalauated once for each path. Each path is also passed to `getProps` (if it exists) so you can fetch path-specific data. While it is not necessary you can use square brackets around the name of a file that exports a `getPaths` function to remain true to Next.js (e.g `[fileName].js`)
+### el(tag, props, ...children)
 
-## Contributing
+Append a new Element to the DOM. In other words, turn a JSX component into an HTML DOM element.
 
-Feel free to add any features you might find useful. Just open an issue and we can go there. If you find a bug you can also open an issue but please make sure to include details like your system, node version, etc.
+* tag {`String `|`Function`} tagName of component to create, or a function to create an element.
+* props {`Object`} A dictionary of HTML attributes.
+* children {`Array`|`String`|`Fragment`|`Component`}
 
-## Bottom line
+> The prop `html` sets the innerHTML of the element.
 
-Please read the [notes] to get Improvements over Dhow, and differences with React.
+> The `class` and `className` props all create a `class` attribute.
 
-[article]: https://vixalien.ga/post/explosiv
-[notes]: https://github.com/vixalien/explosiv/blob/master/notes.md
+> The `style` attribute can be a `String` or `Object`. If it is an Object, it will be transformed into a String.
+
+### Head({ children, ...props })
+
+Add children to the DOM's `<head>` element. Available built-in, no need to import it
+
+### Fragment({ children, ...props })
+
+Add children to the parent component without creating a new HTML element. Built-in in JSX as `<>text</>`
+
+[react]: https://reactjs.org
+[examples]: https://github.com/vixalien/explosiv/tree/master/examples
