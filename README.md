@@ -14,7 +14,7 @@ npm i explosiv -D
 
 ## Simple example
 
-Explosiv is allow you to build JSX sites similar to [React]. Create a file `pages/index.js`:
+Explosiv allow you to build static sites written in JSX. To get started, ceate a file called `pages/index.js`:
 
 ```js
 // pages/index.js
@@ -39,6 +39,7 @@ Your site will be exported into the `out/` directory.
 
 > An alternate way to use: Install Explosiv globally `npm i explosiv -g` then run your commands like `explosiv build`
 
+> There is an [article about how Explosiv works][article].
 
 ## Usage
 
