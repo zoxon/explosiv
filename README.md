@@ -4,27 +4,20 @@
 
 JSX Static Site Generator for Ambitious projects. Simple, powerful and performant.
 
+> A fork of the already beautiful [Dhow](https://www.github.com/kartiknair/dhow)
+
 ## Getting started
 
-Install it as a development dependency.
+Install it to your development dependencies.
 
 ```bash
 # install explosiv
 npm i explosiv -D
 ```
 
-Or just install it globally
-
-```bash
-# install explosiv
-npm i explosiv -g
-```
-
-> A clone of the already beautiful [Dhow](https://www.github.com/kartiknair/dhow)
-
 ## Simple example
 
-Explosiv is basically a transpiler. When you give a basic JSX file like this:
+Explosiv is basically a transpiler. Create a file `pages/index.js`:
 
 ```jsx
 // pages/index.js
@@ -39,15 +32,21 @@ export default () => (
 )
 ```
 
-It convert it into a static HTML file like this:
+To build your pages (pages are in `pages/` by default).
+
+```bash
+npx explosiv build
+```
+
+Explosiv will generate a static site in `out/` with a file `out/index.html` like this:
 
 ```html
 <!-- out/index.html -->
 <!DOCTYPE html>
 <html>
-  <head>
+  <Head>
     <title>Home page</title>
-  </head>
+  </Head>
   <body>
     <div class="explosiv">
       <main>
@@ -152,10 +151,10 @@ Explosiv uses [PostCSS](https://github.com/postcss/postcss) under the hood to pr
 
 ## The `Head` component
 
-To manage the contents of the document head you can use the `Head` component that Explosiv exports. Import it like this:
+To manage the contents of the document head you can use the `Head` component that Explosiv exports. `Head` is built-in natively. But you can import it like this:
 
 ```jsx
-import Explosiv, { Head } from 'explosiv'
+import { Head } from 'explosiv'
 ```
 
 And then whatever you put inside it will be inserted into the paage head at build time:
