@@ -53,8 +53,8 @@ export default () => (
   <main>
     <h3>Hello!</h3>
     <>
-    	<p>I'm vixalien</p>
-    	<p>But only on the internet</p>
+      <p>I'm vixalien</p>
+      <p>But only on the internet</p>
     </>
   </main>
 )
@@ -137,11 +137,11 @@ export default (data) => (
 )
 
 export getProps = () => {
-	return {
-		name: 'Post',
-		description: 'A Post lol',
-		created: 'Yesterday'
-	}
+  return {
+    name: 'Post',
+    description: 'A Post lol',
+    created: 'Yesterday'
+  }
 }
 ```
 
@@ -166,11 +166,11 @@ export default (data) => (
 )
 
 export getProps = (slug) => {
-	return somehowGetDataAboutPost(slug);
+  return somehowGetDataAboutPost(slug);
 }
 
 export getData = () => {
-	return ['post1', 'post2']
+  return ['post1', 'post2']
 }
 ```
 
@@ -211,8 +211,8 @@ Build production ready static files
 
 | Option          | Description                               | Default        |
 | --------------- | ----------------------------------------- | -------------- |
-| -i, --indir     | Change input directory for your files.    | ./pages        |
-| -d, --devdir    | Change directory where your temporary development builds are  stored.  | \_\_explosiv\_\_ |
+| -i, --indir     | Change input directory for your files.    | `./pages`        |
+| -d, --devdir    | Change directory where your temporary development builds are  stored.  | `./__explosiv__` |
 
 <br/>
 
@@ -224,9 +224,9 @@ There is no case we can see you doing `require('explosiv')`. But, it exports a J
 
 Append a new Element to the DOM. In other words, turn a JSX component into an HTML DOM element.
 
-* tag {`String `|`Function`} tagName of component to create, or a function to create an element.
-* props {`Object`} A dictionary of HTML attributes.
-* children {`Array`|`String`|`Fragment`|`Component`}
+* **tag** {`String `|`Function`} tagName of component to create, or a function to create an element.
+* **props** {`Object`} A dictionary of HTML attributes.
+* **children** {`Array`|`String`|`Fragment`|`Component`}
 
 > The prop `html` sets the innerHTML of the element.
 
