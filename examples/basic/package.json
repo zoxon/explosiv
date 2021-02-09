@@ -1,5 +1,5 @@
 {
-	"name": "explosiv-basic-example",
+	"name": "explosiv-basic",
 	"version": "1.0.0",
 	"description": "Basic example using Explosiv as a Static Site Generator",
 	"main": "index.js",
