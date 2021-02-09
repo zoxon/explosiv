@@ -63,8 +63,6 @@ export default () => (
 
 **`style` can either be an Object or String**
 
-Passing the `class` or `className` props will do the export a `class` HTML attribute.
-
 ```js
 export default () => (
   <main>
