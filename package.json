@@ -9,7 +9,7 @@
 	"scripts": {
 		"test": "uvu -r esbuild-register test",
 		"build": "node ./build",
-		"prepublish": "npm run build"
+		"prepare": "npm run build"
 	},
 	"files": [
 		"dist"
