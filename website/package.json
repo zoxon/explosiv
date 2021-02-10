@@ -1,0 +1,24 @@
+{
+  "name": "explosiv-website",
+  "version": "0.0.0",
+  "description": "Website for the Explosiv JSX Frameworl",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "website",
+    "explosiv",
+    "jsx"
+  ],
+  "author": "vixalien",
+  "license": "ISC",
+  "dependencies": {
+    "explosiv": "file:..",
+    "marked": "^2.0.0",
+    "prismjs": "^1.23.0"
+  },
+  "devDependencies": {
+    "cssnano": "^4.1.10"
+  }
+}
