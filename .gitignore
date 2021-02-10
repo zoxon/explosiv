@@ -14,4 +14,4 @@ out/
 
 # Ignore `package-lock` in examples & website
 examples/*/package-lock.json
-website/*/package-lock.json
+website/package-lock.json
