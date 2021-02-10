@@ -18,7 +18,7 @@ let buildJS = async (indir, outdir) => {
 		// Part 5: write Into DOM
 		let writePageDOM = async (pageDOM, path) => {
 			document = newDocument(indir, outdir)
-			const rootEl = document.getElementsByClassName('root')[0]
+			const rootEl = document.getElementsByClassName('root')[0] || document.body;
 
 			if (Array.isArray(pageDOM)) {
 				pageDOM.forEach((singleEl) => {
