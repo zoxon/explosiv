@@ -1,4 +1,6 @@
-# 🧨 Explosiv ![npm version](https://img.shields.io/npm/v/explosiv) ![License](https://img.shields.io/npm/l/explosiv) ![Size](https://img.shields.io/bundlephobia/minzip/explosiv)
+# 🧨 Explosiv
+
+![npm version](https://img.shields.io/npm/v/explosiv) ![License](https://img.shields.io/npm/l/explosiv) ![Size](https://img.shields.io/bundlephobia/minzip/explosiv)
 
 > A fork of the already beautiful [Dhow](https://www.github.com/kartiknair/dhow)
 
@@ -220,7 +222,7 @@ Build production ready static files
 
 There is no case we can see you doing `require('explosiv')`. But, it exports a JSX Runtime, that we uses under the hood to transform your JSX pages into HTML. Functions it export are listed here.
 
-### el(tag, props, ...children)
+**el(tag, props, ...children)**
 
 Append a new Element to the DOM. In other words, turn a JSX component into an HTML DOM element.
 
@@ -234,13 +236,19 @@ Append a new Element to the DOM. In other words, turn a JSX component into an HT
 
 > The `style` attribute can be a `String` or `Object`. If it is an Object, it will be transformed into a String.
 
-### Head({ children, ...props })
+<br/>
+
+**Head({ children, ...props })**
 
 Add children to the DOM's `<head>` element. Available built-in, no need to import it
 
-### Fragment({ children, ...props })
+<br/>
+
+**Fragment({ children, ...props })**
 
 Add children to the parent component without creating a new HTML element. Built-in in JSX as `<>text</>`
+
+<br/>
 
 ## Contributing
 
