@@ -32,7 +32,7 @@ export const getProps = async (slug) => {
 			var anchor = this.options.headerPrefix + raw.toLowerCase().replace(/[^\w]+/g, '-');
 			
 			if (level == 2) {
-				toc.push(`<a href="${anchor}">${text}</a>`)
+				toc.push(`<a href="#${anchor}">${text}</a>`)
 			}
 			if (level == 1) {
 				return '';
@@ -56,9 +56,7 @@ export const getProps = async (slug) => {
 		},
 	})
 
-	post = marked(post)
-	console.log('toc', toc);
-	return { post, toc }
+	return { post: marked(post), toc }
 }
 
 export default Post
