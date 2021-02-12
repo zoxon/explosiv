@@ -88,6 +88,7 @@ function explosivDev({
 	process.env.NODE_ENV = 'development'
 
 	const watcher = chokidar.watch('.', {
+		awaitWriteFinish: true,
 		ignoreInitial: true,
 		ignored: (path) =>
 			path.startsWith(devdir) || path.startsWith('node_modules'),
