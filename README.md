@@ -1,20 +1,22 @@
 # 🧨 Explosiv
 
-![npm version](https://img.shields.io/npm/v/explosiv) ![License](https://img.shields.io/npm/l/explosiv) ![Size](https://img.shields.io/bundlephobia/minzip/explosiv)
+![npm version](https://img.shields.io/npm/v/explosiv) ![Size](https://img.shields.io/bundlephobia/minzip/explosiv)
 
 > A fork of the already beautiful [Dhow](https://www.github.com/kartiknair/dhow)
 
 Simple and powerful JSX Static Site Generator.
 
+
+
 ## Getting started
 
-1. Install it to your development dependencies.
+### 1. Install it to your development dependencies.
 
 ```bash
 npm i explosiv -D
 ```
 
-### Simple example
+### 2. Write your first page.
 
 Explosiv allow you to build static sites written in JSX. To get started, create a file called `pages/index.js`:
 
@@ -31,15 +33,23 @@ export default () => (
 )
 ```
 
-Then build your static site! It's this simple.
+### 3. Build your static site!
 
 ```bash
 npx explosiv build
 ```
 
-Your site will be exported into the `out/` directory.
+Building your site will transform your JSX into static HTML. Your site will be exported into the `out/` directory.
 
 > An alternate way to use: Install Explosiv globally `npm i explosiv -g` then run your commands like this: `explosiv build`
+
+### 4. Serve your site!
+
+```bash
+npx explosiv serve
+```
+
+Your site will be ready at [http://localhost:3000]()
 
 > There is an [article about how Explosiv works][article].
 
@@ -203,7 +213,7 @@ export default () => (
 
 **Using getProps**
 
-If you export `getProps`, it will be called at build time to any data you may require. That data will be passed into the main export of your file.
+If you export `getProps`, it will be called at build time to get any data you may require. That data will be passed into the main export of your file.
 
 ```js
 // pages/onepost.js
