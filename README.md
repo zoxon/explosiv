@@ -86,7 +86,7 @@ explosiv dev -i ./pages -d ./__explosiv__ -p 3000
 | --------------- | ----------------------------------------- | -------------- |
 | -i, --indir     | Change input directory for your files.    | `./pages`        |
 | -d, --devdir    | Change directory where your temporary development builds are  stored.  | `./__explosiv__` |
-| -p, --port      | Change port for `explosiv dev`              | `process.env.PORT` or `3000` |
+| -p, --port      | Change port for HTTP Server              | `process.env.PORT` or `3000` |
 
 > **Note:** `explosiv dev` doesn't rebuild files when a file changed is in `node_modules` or in the temporary development directory (`devdir`).
 
@@ -103,7 +103,7 @@ explosiv serve -d ./pages -p 3000
 | Option          | Description                               | Default        |
 | --------------- | ----------------------------------------- | -------------- |
 | -d, --dir       | Change input directory for your files.    | `./pages`      |
-| -p, --port      | Change port for `dev server`              | process.env.PORT or `3000` |
+| -p, --port      | Change port for HTTP Server              | process.env.PORT or `3000` |
 
 <br/>
 
