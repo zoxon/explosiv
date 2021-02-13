@@ -63,7 +63,7 @@ cli
 
 cli.parse(process.argv)
 
-function explosivServe({ dir = 'out', port = 3000 }) {
+function explosivServe({ dir = 'out', port = 3000 }, dev = false) {
 	const assets = sirv(resolve(dir), {
 		dev: true,
 	})
@@ -73,7 +73,7 @@ function explosivServe({ dir = 'out', port = 3000 }) {
 	http.createServer(server).listen(process.env.PORT || port, (err) => {
 		if (err) throw err
 		console.log(
-			`Static server is live at: ${chalk.cyan(
+			`${dev ? 'Development' : 'Static'} server is live at: ${chalk.cyan(
 				`http://localhost:${process.env.PORT || port}`
 			)}\n`
 		)
@@ -113,24 +113,12 @@ function explosivDev({
 	watcher.on('ready', async () => {
 		await buildWithSpinner()
 
-		const assets = sirv(resolve(devdir), {
-			dev: true,
-		})
-
-		let server = connect().use(compression()).use(morgan('dev')).use(assets)
-
-		http.createServer(server).listen(process.env.PORT || port, (err) => {
-			if (err) throw err
-			console.log(
-				`Dev server is live at: ${chalk.cyan(
-					`http://localhost:${process.env.PORT || port}`
-				)}\n`
-			)
-		})
+		explosivServe({ dir: devdir, port }, true)
 	})
 
 	function exitHandler() {
 		watcher.close()
+		console.log('Dev watcher closed gracefully')
 		process.exit(0)
 	}
 
