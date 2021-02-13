@@ -59,37 +59,51 @@ Files in `public/` will be copied into your build output. However, CSS files wil
 
 ## CLI
 
+**explosiv build**
+
+Build production ready static files
+
+```bash
+npx explosiv build -i ./pages -d ./out
+```
+
+| Option          | Description                               | Default        |
+| --------------- | ----------------------------------------- | -------------- |
+| -i, --indir     | Change input directory for your files.    | `./pages`        |
+| -o, --outdir    | Change directory where your temporary development builds are  stored.  | `./out` |
+
+<br/>
+
 **explosiv dev**
 
-Start the dev server, & rebuilds static files on file change
+Build files, start a development server, & rebuilds static files on each file change.
+
+```bash
+explosiv dev -i ./pages -d ./__explosiv__ -p 3000
+```
 
 | Option          | Description                               | Default        |
 | --------------- | ----------------------------------------- | -------------- |
 | -i, --indir     | Change input directory for your files.    | `./pages`        |
 | -d, --devdir    | Change directory where your temporary development builds are  stored.  | `./__explosiv__` |
-| -p, --port      | Change port for `dev server`              | process.env.PORT or `3000` |
+| -p, --port      | Change port for `explosiv dev`              | `process.env.PORT` or `3000` |
+
+> **Note:** `explosiv dev` doesn't rebuild files when a file changed is in `node_modules` or in the temporary development directory (`devdir`).
 
 <br/>
 
 **explosiv serve**
 
-Start a static file server
+Start a simple & static HTTP file server.
+
+```bash
+explosiv serve -d ./pages -p 3000
+```
 
 | Option          | Description                               | Default        |
 | --------------- | ----------------------------------------- | -------------- |
 | -d, --dir       | Change input directory for your files.    | `./pages`      |
 | -p, --port      | Change port for `dev server`              | process.env.PORT or `3000` |
-
-<br/>
-
-**explosiv build**
-
-Build production ready static files
-
-| Option          | Description                               | Default        |
-| --------------- | ----------------------------------------- | -------------- |
-| -i, --indir     | Change input directory for your files.    | `./pages`        |
-| -d, --devdir    | Change directory where your temporary development builds are  stored.  | `./__explosiv__` |
 
 <br/>
 
