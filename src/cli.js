@@ -118,7 +118,6 @@ function explosivDev({
 
 	function exitHandler() {
 		watcher.close()
-		console.log('Dev watcher closed gracefully')
 		process.exit(0)
 	}
 
