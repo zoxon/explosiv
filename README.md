@@ -4,7 +4,7 @@
 
 > A fork of the already beautiful [Dhow](https://www.github.com/kartiknair/dhow)
 
-Simple and powerful JSX Static Site Generator.
+A simple and powerful JSX Static Site Generator.
 
 
 
@@ -256,7 +256,7 @@ export getProps = () => {
 
 **Using getPaths**
 
-If you name your file like `[slug].js`, (i.e with curly brackets) and export `getPaths`, it will be called at build time to get all possible slugs.
+If you name your file like `[slug].js`, (i.e with square brackets) and export `getPaths`, it will be called at build time to get all possible slugs.
 
 ```js
 // pages/[posts].js
@@ -276,7 +276,7 @@ export getProps = (slug) => {
   return somehowGetDataAboutPost(slug);
 }
 
-export getData = () => {
+export getPaths = () => {
   return ['post1', 'post2']
 }
 ```
