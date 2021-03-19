@@ -1,7 +1,7 @@
 const document = require('min-document')
 
 const createElement = (tag, props, ...children) => {
-	if (typeof tag === 'function') return tag({ children, ...props })
+	if (typeof tag === 'function') return tag({ ...props, children })
 	const element = document.createElement(tag)
 
 	Object.entries(props || {}).forEach(([name, value]) => {
