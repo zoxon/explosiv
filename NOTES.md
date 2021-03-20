@@ -1,5 +1,6 @@
 ## Improvements Explosiv have over Dhow
 
+- If a file ends with `.html.js`, say `404.html.js` it will be outputted as `404.html`, not the default `404/index.html` way
 - `Head` is built-in.
 - No need to import `Explosiv` everytime.
 - Provide an `explosiv serve` command that serve a static directory on a specified port (defaults to  3000).

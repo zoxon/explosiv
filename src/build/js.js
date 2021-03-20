@@ -96,13 +96,14 @@ let buildJS = async (indir, outdir) => {
 
 				let src
 
-				if (path) src = join(basedir, dirname(filePath), path, 'index.html')
-				else
-					src = join(
-						basedir,
-						filePath.endsWith('index') ? '' : filePath,
-						'index.html'
-					)
+				if (path) src = join(dirname(filePath), path)
+				else src = filePath.endsWith('index') ? '' : filePath
+				
+				src = join(
+					basedir,
+					src,
+					src.endsWith('html') ? '' : 'index.html'
+				)
 
 				await writePageDOM(fileExports.default(props), src)
 			}
