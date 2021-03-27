@@ -8,6 +8,7 @@ const createElement = (tag, props, ...children) => {
 	const element = document.createElement(tag)
 
 	Object.entries(props || {}).forEach(([name, value]) => {
+		if (!value) return
 		if (name === 'html') element.innerHTML = value
 		else if (name === 'class') element.className += value.toString()
 		else if (name === 'className') element.className += value.toString()
