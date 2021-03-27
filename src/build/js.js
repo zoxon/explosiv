@@ -97,7 +97,9 @@ let buildJS = async (indir, outdir) => {
 				let src
 
 				if (path) src = join(dirname(filePath), path)
-				else src = filePath.endsWith('index') ? '' : filePath
+				else src = filePath
+
+				if (src.endsWith('/index') || src == 'index') src = src + '.html'
 				
 				src = join(
 					basedir,
