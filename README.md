@@ -197,11 +197,13 @@ export default () => (
     <Head>
       <title>Home page</title>
     </Head>
-    <p> class="fancy">This is my fancy paragraph</p>
-    <p> className="fancy">Another similarly fancy paragraph</p>
+    <p class="fancy">This is my fancy paragraph</p>
+    <p className="fancy">Another similarly fancy paragraph</p>
   </main>
 )
 ```
+
+> Note that using `class` is not recommended. Please use `className` instead.
 
 <br/>
 
