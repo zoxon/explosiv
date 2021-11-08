@@ -8,6 +8,7 @@ const { ensureFile, writeFile, remove } = require('fs-extra')
 const esbuild = require('esbuild')
 const fg = require('fast-glob')
 const newDocument = require('./document')
+const { GLOB_IGNORE_PATTERN } = require('../constants')
 
 let buildJS = async (indir, outdir) => {
 	const basedir = resolve(outdir)
@@ -52,7 +53,9 @@ let buildJS = async (indir, outdir) => {
 		}
 
 		// Part 1: transpile files
-		const jsFiles = await fg(posixJoin(indir, '/**/*.js'))
+		const jsFiles = await fg(
+			posixJoin(indir, [GLOB_IGNORE_PATTERN, '/**/*.js'])
+		)
 
 		const services = jsFiles.map(async (file) =>
 			esbuild.build({
@@ -71,7 +74,9 @@ let buildJS = async (indir, outdir) => {
 		await Promise.all(services)
 
 		// Part 2: Handle configuration
-		let pages = await fg(posixJoin(outdir, indir, '/**/*.js'))
+		let pages = await fg(
+			posixJoin(outdir, indir, [GLOB_IGNORE_PATTERN, '/**/*.js'])
+		)
 		pages = pages.filter(
 			(page) => page !== posixJoin(outdir, indir, '_document.js')
 		)

@@ -5,6 +5,7 @@ const {
 const { copy, readFile, writeFile, exists } = require('fs-extra')
 const postcss = require('postcss')
 const fg = require('fast-glob')
+const { GLOB_IGNORE_PATTERN } = require('../constants')
 
 let buildStatic = async (_, outdir) => {
 	const basedir = resolve(outdir)
@@ -12,7 +13,7 @@ let buildStatic = async (_, outdir) => {
 
 	if (await exists(resolve('public'))) await copy(resolve('public'), basedir)
 
-	const cssFiles = await fg(join(outdir, '/**/*.css'))
+	const cssFiles = await fg(join(outdir, [GLOB_IGNORE_PATTERN, '/**/*.css']))
 
 	let postcssPlugins = null
 

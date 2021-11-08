@@ -16,7 +16,9 @@ const { removeSync } = require('fs-extra')
 
 const cli = sade('explosiv')
 
-cli.version(JSON.parse(readFileSync(resolve(__dirname, '..', 'package.json'))).version)
+cli.version(
+	JSON.parse(readFileSync(resolve(__dirname, '..', 'package.json'))).version
+)
 
 cli
 	.command('dev')
