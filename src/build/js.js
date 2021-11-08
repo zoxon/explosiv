@@ -5,20 +5,19 @@ const {
 	posix: { join: posixJoin, normalize: posixNormalize },
 } = require('path')
 const { ensureFile, writeFile, remove } = require('fs-extra')
-const { startService } = require('esbuild')
+const esbuild = require('esbuild')
 const fg = require('fast-glob')
 const newDocument = require('./document')
 
 let buildJS = async (indir, outdir) => {
 	const basedir = resolve(outdir)
-	const service = await startService()
 	global.headContents = []
 
 	try {
 		// Part 5: write Into DOM
 		let writePageDOM = async (pageDOM, path) => {
 			document = newDocument(indir, outdir)
-			const rootEl = document.getElementsByClassName('root')[0] || document.body;
+			const rootEl = document.getElementsByClassName('root')[0] || document.body
 
 			if (Array.isArray(pageDOM)) {
 				pageDOM.forEach((singleEl) => {
@@ -56,15 +55,13 @@ let buildJS = async (indir, outdir) => {
 		const jsFiles = await fg(posixJoin(indir, '/**/*.js'))
 
 		const services = jsFiles.map(async (file) =>
-			service.build({
+			esbuild.build({
 				entryPoints: [file],
 				outfile: join(basedir, file),
 				bundle: true,
 				platform: 'node',
 				format: 'cjs',
-				loader: {
-					'.js': 'jsx',
-				},
+				loader: { '.js': 'jsx' },
 				jsxFactory: 'Explosiv.el',
 				jsxFragment: 'Explosiv.fragment',
 				inject: [resolve(__dirname, './explosiv.shim.js')],
@@ -100,12 +97,8 @@ let buildJS = async (indir, outdir) => {
 				else src = filePath
 
 				if (src.endsWith('/index') || src == 'index') src = src + '.html'
-				
-				src = join(
-					basedir,
-					src,
-					src.endsWith('html') ? '' : 'index.html'
-				)
+
+				src = join(basedir, src, src.endsWith('html') ? '' : 'index.html')
 
 				await writePageDOM(fileExports.default(props), src)
 			}
@@ -129,9 +122,6 @@ let buildJS = async (indir, outdir) => {
 		throw err
 	} finally {
 		await remove(join(basedir, indir))
-
-		// The child process can be explicitly killed when it's no longer needed
-		service.stop()
 	}
 }
 
