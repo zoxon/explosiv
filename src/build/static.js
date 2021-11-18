@@ -1,19 +1,18 @@
-const {
-	resolve,
-	posix: { join },
-} = require('path')
+const { resolve, posix } = require('path')
 const { copy, readFile, writeFile, exists } = require('fs-extra')
 const postcss = require('postcss')
 const fg = require('fast-glob')
-const { GLOB_IGNORE_PATTERN } = require('../constants')
 
 let buildStatic = async (_, outdir) => {
-	const basedir = resolve(outdir)
 	// Start the esbuild child process once
+	const basedir = resolve(outdir)
 
-	if (await exists(resolve('public'))) await copy(resolve('public'), basedir)
+	// Copy from public
+	const publicDir = resolve('public')
 
-	const cssFiles = await fg(join(outdir, [GLOB_IGNORE_PATTERN, '/**/*.css']))
+	if (await exists(publicDir)) await copy(publicDir, basedir)
+
+	const cssFiles = await fg(posix.join(publicDir, '/**/*.css'))
 
 	let postcssPlugins = null
 
@@ -30,7 +29,9 @@ let buildStatic = async (_, outdir) => {
 			const result = await cssProcessor.process(await readFile(filePath), {
 				from: filePath,
 			})
-			await writeFile(filePath, result.css)
+
+			const newFilePath = filePath.replace(publicDir, basedir)
+			await writeFile(newFilePath, result.css)
 		}
 	}
 }

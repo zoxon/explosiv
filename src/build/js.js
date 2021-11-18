@@ -1,14 +1,8 @@
-const {
-	join,
-	resolve,
-	dirname,
-	posix: { join: posixJoin, normalize: posixNormalize },
-} = require('path')
+const { join, resolve, dirname, posix } = require('path')
 const { ensureFile, writeFile, remove } = require('fs-extra')
 const esbuild = require('esbuild')
 const fg = require('fast-glob')
 const newDocument = require('./document')
-const { GLOB_IGNORE_PATTERN } = require('../constants')
 
 let buildJS = async (indir, outdir) => {
 	const basedir = resolve(outdir)
@@ -53,9 +47,7 @@ let buildJS = async (indir, outdir) => {
 		}
 
 		// Part 1: transpile files
-		const jsFiles = await fg(
-			posixJoin(indir, [GLOB_IGNORE_PATTERN, '/**/*.js'])
-		)
+		const jsFiles = await fg(posix.join(indir, '/**/*.{ts,js,jsx,tsx}'))
 
 		const services = jsFiles.map(async (file) =>
 			esbuild.build({
@@ -64,31 +56,33 @@ let buildJS = async (indir, outdir) => {
 				bundle: true,
 				platform: 'node',
 				format: 'cjs',
-				loader: { '.js': 'jsx' },
+				loader: {
+					'.js': 'jsx',
+					'.ts': 'tsx',
+				},
 				jsxFactory: 'Explosiv.el',
 				jsxFragment: 'Explosiv.fragment',
-				inject: [resolve(__dirname, './explosiv.shim.js')],
+				inject: [resolve(__dirname, '../explosiv.shim.js')],
 			})
 		)
 
 		await Promise.all(services)
 
 		// Part 2: Handle configuration
-		let pages = await fg(
-			posixJoin(outdir, indir, [GLOB_IGNORE_PATTERN, '/**/*.js'])
-		)
+		let pages = await fg(posix.join(outdir, indir, '/**/*.{ts,js,jsx,tsx}'))
 		pages = pages.filter(
-			(page) => page !== posixJoin(outdir, indir, '_document.js')
+			(page) => page !== posix.join(outdir, indir, '_document.js')
 		)
 
 		for (let page of pages) {
 			const fileExports = require(resolve(page))
 
-			const filePath = posixNormalize(page)
+			const filePath = posix
+				.normalize(page)
 				.split('/')
-				.slice(1 + posixNormalize(indir).split('/').length)
+				.slice(1 + posix.normalize(indir).split('/').length)
 				.join('/')
-				.slice(0, -3)
+				.replace(/\..+$/, '')
 
 			// Part 4: write the component
 			let writeComponent = async (path = null) => {
